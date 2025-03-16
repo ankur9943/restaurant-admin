@@ -1,7 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
-import { AccountVerificationIcon, DashboardIcon, ManagementIcon, SettingsIcon, SubscriptionIcon, TagsIcon, TransactionsIcon, UserManagementIcon } from '@/app/helper/Svg'
+import { AccountVerificationIcon, DashboardIcon, LogOutIcon, ManagementIcon, SettingsIcon, SubscriptionIcon, TagsIcon, TransactionsIcon, UserManagementIcon } from '@/app/helper/Svg'
 import Link from 'next/link'
 
 export default function Sidebar() {
@@ -30,13 +30,13 @@ export default function Sidebar() {
           {isOpen ? "Logo Here" : "Logo"}
         </h1>
       </div>
-      <div>
+      <div className='flex flex-col justify-between h-[calc(100dvh-140px)] overflow-y-auto !overflow-x-hidden'>
         <ul className='px-3'>
           {MenuItem.map((item) => {
             const isActive = pathname.startsWith(item.Url)
             return (
               <li key={item.id} className="mb-2 transition-all duration-300">
-                <Link href={item.Url} className={`flex items-center p-2 rounded text-sm flex-nowrap hover:bg-[#3366FF1A] group 
+                <Link href={item.Url} className={`flex items-center p-2 rounded text-sm flex-nowrap hover:bg-[#3366FF1A] group
                   ${isActive ? 'bg-[#3366FF1A] font-semibold' : ''}`}
                 >
                   <span>
@@ -44,7 +44,7 @@ export default function Sidebar() {
                   </span>
                   {
                     isOpen &&
-                    <span className={`ms-3 group-hover:text-[#36F] group-hover:font-semibold whitespace-nowrap 
+                    <span className={`ms-3 group-hover:text-[#36F] group-hover:font-semibold whitespace-nowrap
                       ${isActive ? 'text-[#3366FF] font-semibold' : 'text-[#5D7285]'}`}>
                       {item.Name}
                     </span>
@@ -54,6 +54,14 @@ export default function Sidebar() {
             )
           })}
         </ul>
+
+        <div className='bg-dark-blue rounded-md px-3 mx-3 py-2 text-white flex space-x-2 items-center mt-auto'>
+          <span><LogOutIcon /></span>
+          {
+            isOpen &&
+            <span>Logout</span>
+          }
+        </div>
       </div>
     </div>
   )
