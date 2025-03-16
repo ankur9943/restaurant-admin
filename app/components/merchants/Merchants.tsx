@@ -44,7 +44,7 @@ export default function Merchants() {
                           {data.id}
                         </td>
                         <td>
-                          <Link className='hover:underline transition-all duration-300h hover:text-dark-blue' href={`/dashboard/${data.name}`}>{data.name}</Link>
+                          <Link className='hover:underline transition-all duration-300h hover:text-dark-blue' href={`/account-verification/${data.id}`}>{data.name}</Link>
                         </td>
                         <td>
                           {data.type}

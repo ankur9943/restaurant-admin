@@ -42,7 +42,7 @@ export default function Consumers() {
                 {data.id}
               </td>
               <td>
-                <Link className='hover:underline transition-all duration-300h hover:text-dark-blue' href={`/account-verification/${data.name}`}>{data.name}</Link>
+                <Link className='hover:underline transition-all duration-300h hover:text-dark-blue' href={`/account-verification/${data.id}`}>{data.name}</Link>
               </td>
               <td>
                 {data.email}

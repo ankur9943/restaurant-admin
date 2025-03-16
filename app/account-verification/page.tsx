@@ -78,7 +78,7 @@ export default function AccountVerificationPage() {
                             className="blue-fill-btn" onClick={() => setIsOpen(true)}>
                             {
                                 activeTab === 'Merchants' ?
-                                    ('Add Consumer') :
+                                    ('Add Merchants') :
                                 activeTab === 'Staff' ?
                                     ('Add Staff') :
                                 activeTab === 'Consumers' ?

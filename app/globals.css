@@ -92,3 +92,13 @@
 .tab-style{
     @apply py-6 px-4 font-medium relative duration-300 after:w-full hover:text-black/80 text-lg lg:text-xl xl:text-2xl after:h-2 after:bg-dark-blue after:-bottom-2 after:absolute after:left-0 after:rounded after:transition-opacity before:h-1/2 after:my-auto before:bg-black/10 before:absolute before:top-auto before:bottom-auto before:right-0 before:w-[1px]
 }
+
+/* Table Common Style */
+.table-head-style{
+    @apply [&_th]:py-4 [&_th]:px-2 [&_th]:text-center [&_th]:text-[#1A1D20] [&_th]:font-medium bg-[#E6E9EC] [&_th]:text-xs xl:[&_th]:text-sm
+    mid-xl:[&_th]:text-base
+}
+.table-body-style tr{
+    @apply border-b border-[#E6E9EC] hover:bg-gray-2/30 [&_td]:text-[#2E3D52] [&_td]:font-medium [&_td]:p-2 [&_td]:text-xs xl:[&_td]:text-sm
+    mid-xl:[&_td]:text-base
+}
