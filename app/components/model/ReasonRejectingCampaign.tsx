@@ -4,6 +4,7 @@ interface ReasonRejectingCampaignProps {
     onClose: () => void;
 }
 
+
 export default function ReasonRejectingCampaign({ onClose }: ReasonRejectingCampaignProps) {
 
     return (

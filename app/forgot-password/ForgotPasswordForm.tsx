@@ -6,7 +6,7 @@ export default function ForgotPasswordForm() {
   return (
       <>
           <Link href="/" className="text-black text-xl font-normal font-['Poppins'] flex items-center">
-              <span className='inline-block flex-shrink mr-3'><ArrowIcon/></span> Forgot Password
+              <span className='inline-block flex-shrink mr-3'><ArrowIcon color={'black'} /></span> Forgot Password
           </Link>
           <div className='my-10'>
               <form className='space-y-5'>

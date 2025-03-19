@@ -7,11 +7,9 @@ import Consumers from "../components/consumers/Consumers";
 import ReasonRejectingCampaign from "../components/model/ReasonRejectingCampaign";
 
 
-
 export default function AccountVerificationPage() {
     const [activeTab, setActiveTab] = useState("Merchants");
     const [isOpen, setIsOpen] = useState(false)
-
 
     return (
         <>
