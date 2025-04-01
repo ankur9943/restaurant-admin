@@ -1,7 +1,5 @@
 import { ArrowIcon } from '@/app/helper/Svg';
-import Link from 'next/link';
 import React from 'react';
-// import { ModelCloseIcon } from '@/app/helper/Svg';
 
 interface AdCampaignDetailProps {
   onClose: () => void;
@@ -24,17 +22,25 @@ const campaigns: Campaign[] = [
 export default function AdCampaignDetail({ onClose, params }: AdCampaignDetailProps) {
   const campaign = params ? campaigns.find((c) => c.id.toString() === params.id) : undefined;
 
-
   return (
     <>
       {/* Modal Backdrop */}
       <div className="fixed bg-black/50 inset-0 z-10 flex justify-center items-center" onClick={onClose}>
-        <div className="py-4 px-6 relative flex flex-col h-full w-full" onClick={(e) => e.stopPropagation()} >
-
+        <div
+          className="py-4 px-6 relative flex flex-col h-full w-full"
+          onClick={(e) => e.stopPropagation()}
+        >
           {/* Modal Header */}
           <div className="flex justify-between items-start mb-6">
-            <button type='button' onClick={onClose} className="text-white text-xl font-normal font-['Poppins'] flex items-center">
-              <span className='inline-block flex-shrink mr-3'><ArrowIcon color={'white'} /></span> {campaign.CampaignName}
+            <button
+              type="button"
+              onClick={onClose}
+              className="text-white text-xl font-normal font-['Poppins'] flex items-center"
+            >
+              <span className="inline-block flex-shrink mr-3">
+                <ArrowIcon color={'white'} />
+              </span>
+              {campaign?.CampaignName || "Campaign Not Found"}
             </button>
             <div className="flex space-x-3">
               <button className="text-[#AA2727] border border-[#AA2727] bg-white rounded p-2 px-5 font-medium text-sm">
@@ -47,9 +53,8 @@ export default function AdCampaignDetail({ onClose, params }: AdCampaignDetailPr
           </div>
 
           {/* Modal Content */}
-          <div className="space-y-4 bg-white min-h-[65dvh] min-w-[50vw] p-5 m-auto ">
+          <div className="space-y-4 bg-white min-h-[65dvh] min-w-[50vw] p-5 m-auto">
             <h5 className="text-base font-normal">Campaign Details</h5>
-
           </div>
         </div>
       </div>

@@ -5,9 +5,7 @@ import React from 'react';
 import Link from 'next/link';
 
 interface MemberDetailProps {
-    params: {
-        id: string;
-    };
+    params: Promise<{ id: string }>;
 }
 
 const memberInfo = [
@@ -27,7 +25,9 @@ const staffList = Array.from({ length: 10 }, (_, index) => ({
     Status: "Active"
 }));
 
-function MemberDetail({ params: { id } }: MemberDetailProps): React.ReactElement {
+export default function MerchantsDetail({ params }: MemberDetailProps): React.ReactElement {
+
+    const { id } = React.use(params);
     const memberId = parseInt(id, 10);
     const member = memberInfo.find((m) => m.id === memberId);
 
@@ -54,7 +54,7 @@ function MemberDetail({ params: { id } }: MemberDetailProps): React.ReactElement
                             <h4 className="text-lg font-medium text-[#353B40]">{member?.name ?? "Member Name"}</h4>
                             <p className='text-sm text-[#353B40]'>ID: {member?.id ?? id}</p>
                         </div>
-                        <Link href={`/account-verification/${id}/${memberId}`} title="Edit" className="border border-black/10 rounded-lg p-2 hover:bg-dark-blue/10">
+                        <Link href={`/account-verification/merchants/addmerchant/${id}`} title="Edit" className="border border-black/10 rounded-lg p-2 hover:bg-dark-blue/10">
                             <EditIcons />
                         </Link>
                     </div>
@@ -63,28 +63,28 @@ function MemberDetail({ params: { id } }: MemberDetailProps): React.ReactElement
                         <ul className="grid lg:grid-cols-2 space-y-2.5">
                             <li className="flex items-center space-x-2">
                                 <LocationIcon />
-                                <span className="text-sm xl:text-base">
+                                <span className="text-sm xl:text-base space-x-2">
                                     <span className='text-[#5D6870]'>Location: </span>
                                     <span className='text-[#434A50]'>{member?.location ?? "Not available"}</span>
                                 </span>
                             </li>
                             <li className="flex items-center space-x-2">
                                 <PhoneIcon />
-                                <span className="text-sm xl:text-base">
+                                <span className="text-sm xl:text-base space-x-2">
                                     <span className='text-[#5D6870]'>Contact: </span>
                                     <span className='text-[#434A50]'>999999999</span>
                                 </span>
                             </li>
                             <li className="flex items-center space-x-2">
                                 <MoneyIcon />
-                                <span className="text-sm xl:text-base">
+                                <span className="text-sm xl:text-base space-x-2">
                                     <span className='text-[#5D6870]'>Active Subscription: </span>
                                     <span className='text-[#434A50]'>Subscription Name</span>
                                 </span>
                             </li>
                             <li className="flex items-center space-x-2">
                                 <MoneyIcon />
-                                <span className="text-sm xl:text-base">
+                                <span className="text-sm xl:text-base space-x-2">
                                     <span className='text-[#5D6870]'>Payout Status: </span>
                                     <span className='text-[#434A50]'>Pending</span>
                                 </span>
@@ -165,5 +165,3 @@ function MemberDetail({ params: { id } }: MemberDetailProps): React.ReactElement
         </>
     );
 }
-
-export default MemberDetail;

@@ -65,7 +65,7 @@
 }
 
 .form-error {
-    @apply text-sm font-normal font-['Poppins'] text-red-600
+    @apply text-xs font-normal font-['Poppins'] text-red-600 pt-1
 }
 
 .form-label span {
@@ -73,7 +73,8 @@
 }
 
 .form-input {
-    @apply min-h-8 p-3 border border-[#D9D9D9] text-black text-sm font-normal font-['Poppins'] leading-snug rounded-[2px] block w-full placeholder:text-[#D9D9D9] outline-none focus:outline-[#3366FF]
+    @apply min-h-8 p-3 border border-gray-2 text-black text-sm font-normal font-['Poppins']
+    leading-snug rounded-[2px] block w-full placeholder:text-gray-2 outline-none focus:outline-[#3366FF]
 }
 
 .sr-only {
@@ -94,6 +95,7 @@
 }
 
 /* Table Common Style */
+
 .table-head-style{
     @apply [&_th]:py-4 [&_th]:px-2 [&_th]:text-center [&_th]:text-[#1A1D20] [&_th]:font-medium bg-[#E6E9EC] [&_th]:text-xs xl:[&_th]:text-sm
     mid-xl:[&_th]:text-base

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import Image from "next/image";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import LoginImage from '@/public/assets/images/login-image.jpg'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { EyeIcon, SlashEyeIcon } from './helper/Svg';
 
 const schema = yup.object().shape({
   email: yup.string().required("Email is required.").matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Invalid email format"),
@@ -15,14 +16,23 @@ const schema = yup.object().shape({
     .matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "Password must contain at least one uppercase letter, one number, and one special character"),
 });
 
+interface FormData {
+  email: string;
+  password: string;
+}
 
 export default function SignIn() {
   const Router: AppRouterInstance = useRouter()
+  const [isShow , isSetShow] = useState<boolean>(false);
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) })
 
-  async function SubmitHandler(data: any) {
+  async function SubmitHandler(data: FormData) {
     console.log(data)
     Router.push('/dashboard')
+  }
+
+  const togglePasswordVisibility = () => {
+    isSetShow(!isShow)
   }
 
   return (
@@ -45,7 +55,12 @@ export default function SignIn() {
               {/* Password */}
               <div>
                 <label htmlFor='password' className='form-label'><span>*</span>Password</label>
-                <input type="password" {...register("password")} id="password" autoComplete="current-password" placeholder='Password' className='form-input' />
+                <div className='relative'>
+                  <input type={isShow ? 'text':'password'} {...register("password")} id="password" autoComplete="current-password" placeholder='Password' className='form-input !pe-8' />
+                  <span className='absolute top-4 right-4 cursor-pointer' onClick={togglePasswordVisibility}>
+                    {!isShow ? <SlashEyeIcon /> : <EyeIcon />}
+                  </span>
+                </div>
                 {errors.password && <p className='form-error'>{errors.password.message}</p>}
               </div>
 

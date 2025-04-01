@@ -9,6 +9,8 @@ export default function AddMember() {
     const [dishes, setDishes] = useState<string[]>([]);
     const [tagInput, setTagInput] = useState("");
     const [dishInput, setDishInput] = useState("");
+    const [images, setImages] = useState<string[]>([]);
+
 
     const handleProfileImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -20,27 +22,34 @@ export default function AddMember() {
     };
 
     const handleRemoveImage = () => setProfileImage(null);
-
     const addTag = () => {
         if (tagInput.trim() && !tags.includes(tagInput.trim())) {
             setTags([...tags, tagInput.trim()]);
             setTagInput("");
         }
     };
-
     const removeTag = (tagToRemove: string) => {
         setTags(tags.filter(tag => tag !== tagToRemove));
     };
-
     const addDish = () => {
         if (dishInput.trim() && !dishes.includes(dishInput.trim())) {
             setDishes([...dishes, dishInput.trim()]);
             setDishInput("");
         }
     };
-
     const removeDish = (dishToRemove: string) => {
         setDishes(dishes.filter(dish => dish !== dishToRemove));
+    };
+
+    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files) return;
+        const files: File[] = Array.from(event.target.files);
+        const newImages: string[] = files.map((file: File) => URL.createObjectURL(file));
+        setImages((prev: string[]) => [...prev, ...newImages]);
+    };
+
+    const removeImage = (index:number) => {
+        setImages(images.filter((_, i) => i !== index));
     };
 
     return (
@@ -168,12 +177,88 @@ export default function AddMember() {
                 </div>
             </div>
 
+            {/* Google Map Direction */}
+            <div className="space-y-2 mt-5">
+                <label htmlFor="" className='text-sm text-[#4B5162] pb-1.5 inline-block'>Google Map Direction</label>
+                <textarea placeholder='Autosize height based on content lines' cols={3} rows={2} className="block text-sm w-full rounded-sm border border-gray-2 p-3">
+                </textarea>
+            </div>
+
+            {/* Menu (Photos */}
+            <div className="space-y-2 mt-5">
+                <h4 className='text-sm text-[#4B5162] pb-1.5 inline-block'>Menu (Photos)</h4>
+                <div className="rounded-lg border border-gray-2 shadow-[0px_0px_5px_0px_rgba(0,0,0,0.15)] px-6 py-8 flex gap-2 flex-wrap">
+                        {images.map((image, index) => (
+                            <div key={index} className="relative size-28 p-2 border-2 border-gray-2 rounded-sm">
+                                <Image width={1} height={1} src={image} alt="uploaded" className="w-full h-full object-cover" />
+                                <button
+                                    onClick={() => removeImage(index)}
+                                    className="absolute -top-1 -right-1 bg-white text-white rounded-full w-4 h-4 text-xs flex items-center justify-center"
+                                >
+                                    <CrossIcon/>
+                                </button>
+                            </div>
+                        ))}
+                        <label className="size-28 flex flex-col items-center justify-center border-dotted border-2 border-gray-2 rounded-sm cursor-pointer hover:bg-[#FAFAFA]">
+                            <span className="text-sm text-[#00000073] text-center">+ <br/> Upload</span>
+                            <input type="file" accept="image/*" multiple className="hidden" onChange={handleImageUpload} />
+                        </label>
+                </div>
+            </div>
+
+            {/* Bank Account Details */}
+            <div className="space-y-2 mt-5">
+                <h4 className='text-sm text-[#4B5162] pb-1.5 inline-block'>Bank Account Details</h4>
+                    <div className="rounded-lg border border-gray-2 shadow-[0px_0px_5px_0px_rgba(0,0,0,0.15)]
+                        px-6 py-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label className="text-sm text-[#4B5162] pb-1.5 inline-block">Bank Name</label>
+                            <input type="text" className="block w-full rounded-sm border border-gray-2 p-2" />
+                        </div>
+                        <div>
+                            <label className="text-sm text-[#4B5162] pb-1.5 inline-block">Account Number</label>
+                            <input type="number" className="block w-full rounded-sm border border-gray-2 p-2" />
+                        </div>
+                        <div>
+                            <label className="text-sm text-[#4B5162] pb-1.5 inline-block">IFSC Code</label>
+                            <input type="text" className="block w-full rounded-sm border border-gray-2 p-2" />
+                        </div>
+                        <div className='col-span-3'>
+                            <label className="text-sm text-[#4B5162] pb-1.5 inline-block">Branch</label>
+                            <input type="text" className="block w-full rounded-sm border border-gray-2 p-2" />
+                        </div>
+                    </div>
+            </div>
+
+            {/* Menu (Photos */}
+            <div className="space-y-2 mt-5">
+                <h4 className='text-sm text-[#4B5162] pb-1.5 inline-block'>Image Gallery</h4>
+                <div className="rounded-lg border border-gray-2 shadow-[0px_0px_5px_0px_rgba(0,0,0,0.15)] px-6 py-8 flex gap-2 flex-wrap">
+                    {images.map((image, index) => (
+                        <div key={index} className="relative size-28 p-2 border-2 border-gray-2 rounded-sm">
+                            <Image width={1} height={1} src={image} alt="uploaded" className="w-full h-full object-cover" />
+                            <button
+                                onClick={() => removeImage(index)}
+                                className="absolute -top-1 -right-1 bg-white text-white rounded-full w-4 h-4 text-xs flex items-center justify-center"
+                            >
+                                <CrossIcon />
+                            </button>
+                        </div>
+                    ))}
+                    <label className="size-28 flex flex-col items-center justify-center border-dotted border-2 border-gray-2 rounded-sm cursor-pointer hover:bg-[#FAFAFA]">
+                        <span className="text-sm text-[#00000073] text-center">+ <br /> Upload</span>
+                        <input type="file" accept="image/*" multiple className="hidden" onChange={handleImageUpload} />
+                    </label>
+                </div>
+            </div>
+
+
             {/* Form Actions */}
             <div className="flex justify-end gap-2 mt-6">
-                <button className="border border-gray-300 px-6 py-2 rounded-lg">Cancel</button>
-                <button className="bg-blue-500 text-white px-6 py-2 rounded-lg">Save Changes</button>
-                </div>
-        </div>
+                <button className="border border-dark-blue px-6 py-2 rounded-lg text-dark-blue">Cancel</button>
+                <button className="bg-dark-blue text-white px-6 py-2 rounded-lg">Notify User</button>
+            </div>
+            </div>
         </>
     );
 }
