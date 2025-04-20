@@ -1,17 +1,16 @@
 "use client";
 import { JSX, useState } from "react";
 import { CrossIcon, FilterIcon } from "../helper/Svg";
-import Merchants from "../components/merchants/Merchants";
-import Staff from "../components/staff/Staff";
-import Consumers from "../components/consumers/Consumers";
 import Link from "next/link";
+import Consumers from "./consumers/page";
+import Staff from "./staff/page";
+import Merchants from "./merchants/page";
 
 type TabItem = {
     id: number;
     name: string;
     Table: JSX.Element;
 };
-
 const tabData: TabItem[] = [
     { id: 1, name: "Merchants", Table: <Merchants /> },
     { id: 2, name: "Staff", Table: <Staff /> },
@@ -49,20 +48,26 @@ export default function AccountVerificationPage() {
                             </button>
                         </div>
                     </div>
+
+
                     <div>
                         <label htmlFor="search-district" className="sr-only">Search By City or District</label>
                         <div className="relative">
                             <input type="search" name="search-district" placeholder="Search By City or District"
                                 className="text-sm font-medium border border-gray-2 py-2 px-3 pe-9 rounded-lg w-full placeholder:text-[#7A85B2] focus:border-dark-blue outline-none" />
-                            <button className="bg-black/25 rounded-full hover:bg-dark-blue transition-all absolute right-4 inline-block top-0 bottom-0 h-fit my-auto">
+                            <button
+                                className="bg-black/25 rounded-full hover:bg-dark-blue transition-all
+                                absolute right-4 inline-block top-0 bottom-0 h-fit my-auto">
                                 <CrossIcon />
                             </button>
                         </div>
                     </div>
-                    <button type="button" className="px-4 py-2 rounded-lg bg-dark-blue text-white text-sm font-medium hover:opacity-85 transition-all duration-300">
+                    <button type="button"
+                        className="px-4 py-2 rounded-lg bg-dark-blue text-white text-sm font-medium hover:opacity-85 transition-all duration-300">
                         <FilterIcon />
                     </button>
-                    <button type="button" className="border border-dark-blue px-4 py-2 rounded-lg text-dark-blue hover:bg-dark-blue hover:text-white text-sm font-medium hover:opacity-85 transition-all duration-300">
+                    <button type="button"
+                        className="border border-dark-blue px-4 py-2 rounded-lg text-dark-blue hover:bg-dark-blue hover:text-white text-sm font-medium hover:opacity-85 transition-all duration-300">
                         Clear All <span>Filters(22)</span>
                     </button>
                 </div>
@@ -79,9 +84,20 @@ export default function AccountVerificationPage() {
                             Pending
                         </button>
                     </div>
-                    <Link href={`/account-verification/`} title="Add Member" className="blue-fill-btn">
-                        {activeTab === 1 ? "Add Merchants" : activeTab === 2 ? "Add Staff" : null}
-                    </Link>
+                    {(activeTab === 1 || activeTab === 2) && (
+                        <Link
+                            href={
+                                activeTab === 1
+                                    ? "/account-verification/merchants/add"
+                                    : "/account-verification/staff/add"
+                            }
+                            title="Add Member"
+                            className="blue-fill-btn"
+                        >
+                            {activeTab === 1 ? "Add Merchants" : "Add Staff"}
+                        </Link>
+                    )}
+
                 </div>
             </div>
 

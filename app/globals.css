@@ -61,7 +61,7 @@
 }
 
 .form-label {
-    @apply text-sm font-normal font-['Poppins'] leading-snug inline-block mb-2
+    @apply font-normal font-['Poppins'] leading-snug inline-block mb-2 text-base
 }
 
 .form-error {

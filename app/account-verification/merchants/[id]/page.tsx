@@ -54,7 +54,7 @@ export default function MerchantsDetail({ params }: MemberDetailProps): React.Re
                             <h4 className="text-lg font-medium text-[#353B40]">{member?.name ?? "Member Name"}</h4>
                             <p className='text-sm text-[#353B40]'>ID: {member?.id ?? id}</p>
                         </div>
-                        <Link href={`/account-verification/merchants/addmerchant/${id}`} title="Edit" className="border border-black/10 rounded-lg p-2 hover:bg-dark-blue/10">
+                        <Link href={`/account-verification/merchants/${id}`} title="Edit" className="border border-black/10 rounded-lg p-2 hover:bg-dark-blue/10">
                             <EditIcons />
                         </Link>
                     </div>

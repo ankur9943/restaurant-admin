@@ -25,6 +25,33 @@ export default function ForgotPasswordForm() {
                   </button>
               </form>
           </div>
+
+
+          {/* Send Otp Than Show Otp Screen */}
+
+
+
+          {/* <div className='my-10'>
+              <form className='space-y-5'>
+                  <div>
+                      <label htmlFor='otp' className='form-label'>Enter OTP</label>
+                      <div>
+                        <input type="number" name="otp" id="otp" placeholder='OTP' required className='form-input' />
+                        <div className='flex items-center justify-between text-base text-[#6C6C6C] font-normal mt-1'>
+                            <span>00: 33</span>
+                            <button type='button' className='underline hover:no-underline'>Resend</button>
+                        </div>
+                      </div>
+                      {error && <span className='error'></span>}
+                  </div>
+                  <button type='submit'
+                      className='text-base font-normal bg-[#3366ff] text-white
+                      rounded-md shadow-[0px_2px_0px_0px_rgba(5,145,255,0.10)] min-h-10 block p-2.5 w-full !mt-14'>
+                      <span>Verify OTP</span>
+
+                  </button>
+              </form>
+          </div> */}
       </>
   )
 }

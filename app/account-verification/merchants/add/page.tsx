@@ -4,10 +4,6 @@ import { CrossIcon, ModelCloseIcon, PlusIcon } from '@/app/helper/Svg';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-// interface AddMemberProps {
-//     onClose: () => void;
-// }
-
 export default function AddMember() {
     const [profileImage, setProfileImage] = useState<string | null>(null);
     const [tags, setTags] = useState<string[]>([]);
